@@ -22,8 +22,8 @@ public class BoardService {
 
     // 글 작성 처리
     public void write(Board board, MultipartFile file) throws Exception{
-        if(file != null){
-            String projectPath = System.getProperty("user.dir") + "\\board\\src\\main\\resources\\static\\files";
+        if(!file.isEmpty()){
+            String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\files";
 
             UUID uuid = UUID.randomUUID();
 
