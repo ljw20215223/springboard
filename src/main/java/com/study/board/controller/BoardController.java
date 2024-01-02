@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -64,9 +65,12 @@ public class BoardController {
     }
 
     @GetMapping("/board/view") // localhost:8080/board/view?id=1
+    @Transactional
     public String boardView(Model model, @RequestParam("id") Integer id) {
+        Board board = boardService.boardView(id);
+        board.setViewCount(board.getViewCount()+1);
+        model.addAttribute("board", board);
 
-        model.addAttribute("board", boardService.boardView(id));
         return "boardview";
     }
 
