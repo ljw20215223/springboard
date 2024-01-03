@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class BoardController {
@@ -21,6 +23,7 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+
 
     @GetMapping("/board/write") //localhost:8090/board/write
     public String boardWriteForm() {
@@ -101,4 +104,6 @@ public class BoardController {
         boardService.deleteboard(id);
         return "redirect:/board/list";
     }
+
+
 }
